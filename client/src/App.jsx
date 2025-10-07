@@ -11,32 +11,40 @@ import Dashboard from './pages/Dashboard';
 import PrivateRoute from './components/routing/PrivateRoute';
 import Recommendations from './features/recommendations/Recommendations';
 
-const theme = createTheme({
+const darkTheme = createTheme({
   palette: {
+    mode: 'dark',
     primary: {
-      main: '#1976d2',
+      main: '#90caf9',
     },
     secondary: {
-      main: '#dc004e',
+      main: '#f48fb1',
+    },
+    background: {
+      default: '#121212',
+      paper: '#1e1e1e',
     },
   },
   typography: {
-    fontFamily: [
-      '-apple-system',
-      'BlinkMacSystemFont',
-      '"Segoe UI"',
-      'Roboto',
-      '"Helvetica Neue"',
-      'Arial',
-      'sans-serif',
-    ].join(','),
+    fontFamily: '"Inter", "Roboto", "Helvetica", "Arial", sans-serif',
+    h1: {
+      fontSize: '2.5rem',
+      fontWeight: 700,
+    },
+    h2: {
+      fontSize: '2rem',
+      fontWeight: 700,
+    },
+    body1: {
+      fontSize: '1rem',
+    },
   },
 });
 
 function App() {
   return (
     <Provider store={store}>
-      <ThemeProvider theme={theme}>
+      <ThemeProvider theme={darkTheme}>
         <CssBaseline />
         <AuthProvider>
           <Routes>

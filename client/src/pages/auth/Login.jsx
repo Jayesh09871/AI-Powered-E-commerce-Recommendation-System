@@ -12,7 +12,10 @@ import {
   Paper,
   Alert,
   CircularProgress,
+  Grid,
+  InputAdornment,
 } from '@mui/material';
+import { Email, Lock } from '@mui/icons-material';
 import { useAuth } from '../../context/auth/AuthContext';
 
 const Login = () => {
@@ -44,73 +47,90 @@ const Login = () => {
 
   return (
     <Container component="main" maxWidth="xs">
-      <Box
-        sx={{
-          marginTop: 8,
-          display: 'flex',
-          flexDirection: 'column',
+      <Paper 
+        elevation={6} 
+        sx={{ 
+          mt: 8, 
+          p: 4, 
+          display: 'flex', 
+          flexDirection: 'column', 
           alignItems: 'center',
+          borderRadius: 2,
         }}
       >
-        <Paper elevation={3} sx={{ p: 4, width: '100%' }}>
-          <Typography component="h1" variant="h5" align="center" sx={{ mb: 3 }}>
-            Sign in
-          </Typography>
-          
-          {error && (
-            <Alert severity="error" sx={{ mb: 2 }} onClose={clearErrors}>
-              {error}
-            </Alert>
-          )}
-          
-          <Box component="form" onSubmit={formik.handleSubmit} noValidate>
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              id="email"
-              label="Email Address"
-              name="email"
-              autoComplete="email"
-              autoFocus
-              value={formik.values.email}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              error={formik.touched.email && Boolean(formik.errors.email)}
-              helperText={formik.touched.email && formik.errors.email}
-            />
-            <TextField
-              margin="normal"
-              required
-              fullWidth
-              name="password"
-              label="Password"
-              type="password"
-              id="password"
-              autoComplete="current-password"
-              value={formik.values.password}
-              onChange={formik.handleChange}
-              onBlur={formik.handleBlur}
-              error={formik.touched.password && Boolean(formik.errors.password)}
-              helperText={formik.touched.password && formik.errors.password}
-            />
-            <Button
-              type="submit"
-              fullWidth
-              variant="contained"
-              sx={{ mt: 3, mb: 2 }}
-              disabled={loading}
-            >
-              {loading ? <CircularProgress size={24} /> : 'Sign In'}
-            </Button>
-            <Box sx={{ textAlign: 'center' }}>
+        <Typography component="h1" variant="h4" sx={{ mb: 3, fontWeight: 'bold' }}>
+          Welcome Back
+        </Typography>
+        
+        {error && (
+          <Alert severity="error" sx={{ mb: 2, width: '100%' }} onClose={clearErrors}>
+            {error}
+          </Alert>
+        )}
+        
+        <Box component="form" onSubmit={formik.handleSubmit} noValidate sx={{ mt: 1 }}>
+          <TextField
+            margin="normal"
+            required
+            fullWidth
+            id="email"
+            label="Email Address"
+            name="email"
+            autoComplete="email"
+            autoFocus
+            value={formik.values.email}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            error={formik.touched.email && Boolean(formik.errors.email)}
+            helperText={formik.touched.email && formik.errors.email}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <Email />
+                </InputAdornment>
+              ),
+            }}
+          />
+          <TextField
+            margin="normal"
+            required
+            fullWidth
+            name="password"
+            label="Password"
+            type="password"
+            id="password"
+            autoComplete="current-password"
+            value={formik.values.password}
+            onChange={formik.handleChange}
+            onBlur={formik.handleBlur}
+            error={formik.touched.password && Boolean(formik.errors.password)}
+            helperText={formik.touched.password && formik.errors.password}
+            InputProps={{
+              startAdornment: (
+                <InputAdornment position="start">
+                  <Lock />
+                </InputAdornment>
+              ),
+            }}
+          />
+          <Button
+            type="submit"
+            fullWidth
+            variant="contained"
+            sx={{ mt: 3, mb: 2, py: 1.5, fontWeight: 'bold' }}
+            disabled={loading}
+          >
+            {loading ? <CircularProgress size={24} color="inherit" /> : 'Sign In'}
+          </Button>
+          <Grid container justifyContent="flex-end">
+            <Grid item>
               <Link component={RouterLink} to="/register" variant="body2">
                 {"Don't have an account? Sign Up"}
               </Link>
-            </Box>
-          </Box>
-        </Paper>
-      </Box>
+            </Grid>
+          </Grid>
+        </Box>
+      </Paper>
     </Container>
   );
 };
