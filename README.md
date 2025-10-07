@@ -1,5 +1,8 @@
 # AI-Powered E-commerce Recommendation System
 
+## 🌐 Live Demo
+Frontend: [https://ai-powered-e-commerce-recommendatio.vercel.app/](https://ai-powered-e-commerce-recommendatio.vercel.app/)
+
 ## 🚀 Objective
 Create an AI-powered recommendation system integrated with an e-commerce platform to offer personalized suggestions to users based on their browsing history, purchase behavior, and preferences.
 
