@@ -3,7 +3,8 @@ import axios from 'axios';
 
 const AuthContext = createContext();
 
-const API_URL = 'http://localhost:5001/api/auth';
+// Using the deployed frontend URL
+const API_URL = 'https://ai-powered-e-commerce-recommendatio.vercel.app/api/auth';
 
 export const AuthProvider = ({ children }) => {
   const [user, setUser] = useState(null);
